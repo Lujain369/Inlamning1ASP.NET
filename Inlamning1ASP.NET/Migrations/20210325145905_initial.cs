@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Inlamning1ASP.NET.Migrations
 {
-    public partial class test : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,24 +44,17 @@ namespace Inlamning1ASP.NET.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    organisation_id = table.Column<int>(type: "int", nullable: false),
+                    organisation_ID = table.Column<int>(type: "int", nullable: false),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     place = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     adress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     spots_available = table.Column<int>(type: "int", nullable: false),
-                    AttenderId = table.Column<int>(type: "int", nullable: true),
                     OrganisationId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Event", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Event_Attender_AttenderId",
-                        column: x => x.AttenderId,
-                        principalTable: "Attender",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Event_Organisation_OrganisationId",
                         column: x => x.OrganisationId,
@@ -70,10 +63,34 @@ namespace Inlamning1ASP.NET.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "AttenderEvent",
+                columns: table => new
+                {
+                    AttendersId = table.Column<int>(type: "int", nullable: false),
+                    EventsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AttenderEvent", x => new { x.AttendersId, x.EventsId });
+                    table.ForeignKey(
+                        name: "FK_AttenderEvent_Attender_AttendersId",
+                        column: x => x.AttendersId,
+                        principalTable: "Attender",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AttenderEvent_Event_EventsId",
+                        column: x => x.EventsId,
+                        principalTable: "Event",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_Event_AttenderId",
-                table: "Event",
-                column: "AttenderId");
+                name: "IX_AttenderEvent_EventsId",
+                table: "AttenderEvent",
+                column: "EventsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Event_OrganisationId",
@@ -84,10 +101,13 @@ namespace Inlamning1ASP.NET.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Event");
+                name: "AttenderEvent");
 
             migrationBuilder.DropTable(
                 name: "Attender");
+
+            migrationBuilder.DropTable(
+                name: "Event");
 
             migrationBuilder.DropTable(
                 name: "Organisation");

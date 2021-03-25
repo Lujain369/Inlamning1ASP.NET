@@ -7,7 +7,7 @@ namespace Inlamning1ASP.NET.models
 {
     public class Event
     {
-        public int eventID { get; set; }
+        public int Id { get; set; }
         public string title { get; set; }
         public int organisation_ID { get; set; }
         public string description { get; set; }

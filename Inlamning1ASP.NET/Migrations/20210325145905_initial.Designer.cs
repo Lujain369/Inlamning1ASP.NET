@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inlamning1ASP.NET.Migrations
 {
     [DbContext(typeof(EventsDbContext))]
-    [Migration("20210325091011_test2")]
-    partial class test2
+    [Migration("20210325145905_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,21 @@ namespace Inlamning1ASP.NET.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("AttenderEvent", b =>
+                {
+                    b.Property<int>("AttendersId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EventsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AttendersId", "EventsId");
+
+                    b.HasIndex("EventsId");
+
+                    b.ToTable("AttenderEvent");
+                });
 
             modelBuilder.Entity("Inlamning1ASP.NET.models.Attender", b =>
                 {
@@ -49,9 +64,6 @@ namespace Inlamning1ASP.NET.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AttenderId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("OrganisationId")
                         .HasColumnType("int");
 
@@ -64,7 +76,7 @@ namespace Inlamning1ASP.NET.Migrations
                     b.Property<string>("description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("organisation_id")
+                    b.Property<int>("organisation_ID")
                         .HasColumnType("int");
 
                     b.Property<string>("place")
@@ -77,8 +89,6 @@ namespace Inlamning1ASP.NET.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AttenderId");
 
                     b.HasIndex("OrganisationId");
 
@@ -106,20 +116,26 @@ namespace Inlamning1ASP.NET.Migrations
                     b.ToTable("Organisation");
                 });
 
-            modelBuilder.Entity("Inlamning1ASP.NET.models.Event", b =>
+            modelBuilder.Entity("AttenderEvent", b =>
                 {
                     b.HasOne("Inlamning1ASP.NET.models.Attender", null)
-                        .WithMany("Events")
-                        .HasForeignKey("AttenderId");
+                        .WithMany()
+                        .HasForeignKey("AttendersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
+                    b.HasOne("Inlamning1ASP.NET.models.Event", null)
+                        .WithMany()
+                        .HasForeignKey("EventsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Inlamning1ASP.NET.models.Event", b =>
+                {
                     b.HasOne("Inlamning1ASP.NET.models.Organisation", null)
                         .WithMany("Events")
                         .HasForeignKey("OrganisationId");
-                });
-
-            modelBuilder.Entity("Inlamning1ASP.NET.models.Attender", b =>
-                {
-                    b.Navigation("Events");
                 });
 
             modelBuilder.Entity("Inlamning1ASP.NET.models.Organisation", b =>

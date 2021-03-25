@@ -1,9 +1,5 @@
 ﻿@page
 @model Inlamning1ASP.NET.Pages.EventsModel
-@{ ViewData["Title"] = "Events";
-}
-
-<h1>Events</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -11,6 +7,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].title)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Event[0].organisation_ID)
             </th>
@@ -33,4 +32,33 @@
         </tr>
     </thead>
     <tbody>
+@foreach (var item in Model.Event) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.organisation_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.place)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.adress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.spots_available)
+            </td>
+            <td>
+               | <a asp-page="./JoinEvent" asp-route-id="@item.Id">Join Event</a> |
+            </td>
+        </tr>
+}
+    </tbody>
 </table>

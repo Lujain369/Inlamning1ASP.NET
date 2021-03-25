@@ -1,5 +1,5 @@
 ﻿@page
-@model Inlamning1ASP.NET.Pages.JoinEventModel
+@model Inlamning1ASP.NET.Pages.DetailsModel
 
 <div>
     <h4>Event</h4>
@@ -50,7 +50,6 @@
     </dl>
 </div>
 <div>
-    <form method="post">
-        <input type="submit" asp-route-id="@Model.Event.Id" class="btn bg-dark text-light" value="Join Event"/>
-    </form>
+    <a asp-page="./Edit" asp-route-id="@Model.Event.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
 </div>

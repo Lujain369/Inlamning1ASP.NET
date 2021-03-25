@@ -1,4 +1,5 @@
 using Inlamning1ASP.NET.Data;
+using Inlamning1ASP.NET.models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,26 +17,40 @@ namespace Inlamning1ASP.NET
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            CreateDbifNotExist(host);
+            StartSeed(host);
             host.Run();
         }
 
-        private static void CreateDbifNotExist(IHost host)
+        public static void StartSeed(IHost host)
         {
             using (var scope = host.Services.CreateScope())
             {
-                var services = scope.ServiceProvider;
+                var context = scope.ServiceProvider.GetRequiredService<EventsDbContext>();
+                /*
+                //context.Attender.RemoveRange(context.Attender);
+                //context.Event.RemoveRange(context.Event);
+                context.Attender.AddRange(new List<Attender>()
+                {
+                   new Attender() { name = "Lolo", email = "antonberglund@hotmail.com", phone_number = "0731337123" },
 
-                try
+                });
+
+
+                context.Organisation.AddRange(new List<Organisation>()
                 {
-                    var context = services.GetRequiredService<EventsDbContext>();
-                    EventsDbContext.StartSeed(context);
-                }
-                catch (Exception sten)
+                    new Organisation(){name = "hej", email="hej@gmail.com", phone_number="0738723564"},
+
+                });
+                context.Event.AddRange(new List<Event>()
                 {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(sten, "Äntligen");
-                }
+                 new Event(){ title="Bollspel", date=DateTime.Now, adress="Norrköping", spots_available=400},
+                 new Event(){ title="Coronafest", date=DateTime.Now, adress="Kungsbacka", spots_available=400},
+                 new Event(){ title="Fotboll", date=DateTime.Now, adress="Göteborg", spots_available=400},
+                 new Event(){ title="Vintest", date=DateTime.Now, adress="Mölndal", spots_available=400},
+
+                });
+                */
+                context.SaveChanges();
             }
         }
 
