@@ -9,11 +9,12 @@ namespace Inlamning1ASP.NET.models
     {
         public int Id { get; set; }
         public string title { get; set; }
-        public int organisation_id { get; set; }
+        public int organisation_ID { get; set; }
         public string description { get; set; }
         public string place { get; set; }
         public string adress { get; set; }
         public DateTime date { get; set; }
         public int spots_available { get; set; }
+        public List<Attender> Attenders { get; set; }
     }
 }

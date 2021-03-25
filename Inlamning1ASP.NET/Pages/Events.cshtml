@@ -1,0 +1,36 @@
+﻿@page
+@model Inlamning1ASP.NET.Pages.EventsModel
+@{ ViewData["Title"] = "Events";
+}
+
+<h1>Events</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].organisation_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].place)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].adress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].spots_available)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+</table>
