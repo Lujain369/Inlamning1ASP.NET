@@ -32,4 +32,31 @@
     </thead>
     <tbody>
 
+        @foreach (var item in Model.Event)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.place)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.adress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.spots_available)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.eventID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.eventID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.eventID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
 </table>
