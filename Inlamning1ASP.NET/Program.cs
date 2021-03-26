@@ -29,6 +29,8 @@ namespace Inlamning1ASP.NET
                 
                 //context.Attender.RemoveRange(context.Attender);
                 //context.Event.RemoveRange(context.Event);
+
+                /*
                 context.Attender.AddRange(new List<Attender>()
                 {
                    new Attender() { name = "Lolo", email = "antonberglund@hotmail.com", phone_number = "0731337123" },
@@ -51,6 +53,7 @@ namespace Inlamning1ASP.NET
                 });
                 
                 context.SaveChanges();
+                */
             }
         }
 

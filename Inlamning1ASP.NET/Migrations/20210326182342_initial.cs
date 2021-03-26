@@ -87,10 +87,46 @@ namespace Inlamning1ASP.NET.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "AttenderEvents",
+                columns: table => new
+                {
+                    AttenderEventId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EventId = table.Column<int>(type: "int", nullable: false),
+                    AttenderId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AttenderEvents", x => x.AttenderEventId);
+                    table.ForeignKey(
+                        name: "FK_AttenderEvents_Attender_AttenderId",
+                        column: x => x.AttenderId,
+                        principalTable: "Attender",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AttenderEvents_Event_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Event",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AttenderEvent_EventsId",
                 table: "AttenderEvent",
                 column: "EventsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AttenderEvents_AttenderId",
+                table: "AttenderEvents",
+                column: "AttenderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AttenderEvents_EventId",
+                table: "AttenderEvents",
+                column: "EventId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Event_OrganisationId",
@@ -102,6 +138,9 @@ namespace Inlamning1ASP.NET.Migrations
         {
             migrationBuilder.DropTable(
                 name: "AttenderEvent");
+
+            migrationBuilder.DropTable(
+                name: "AttenderEvents");
 
             migrationBuilder.DropTable(
                 name: "Attender");
