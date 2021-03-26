@@ -26,7 +26,7 @@ namespace Inlamning1ASP.NET
             using (var scope = host.Services.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<EventsDbContext>();
-                /*
+                
                 //context.Attender.RemoveRange(context.Attender);
                 //context.Event.RemoveRange(context.Event);
                 context.Attender.AddRange(new List<Attender>()
@@ -49,7 +49,7 @@ namespace Inlamning1ASP.NET
                  new Event(){ title="Vintest", date=DateTime.Now, adress="Mölndal", spots_available=400},
 
                 });
-                */
+                
                 context.SaveChanges();
             }
         }

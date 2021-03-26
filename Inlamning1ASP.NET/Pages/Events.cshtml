@@ -56,7 +56,8 @@
                 @Html.DisplayFor(modelItem => item.spots_available)
             </td>
             <td>
-               | <a asp-page="./JoinEvent" asp-route-id="@item.Id">Join Event</a> |
+               |
+                <a asp-page="./JoinEvent" asp-route-id="@item.Id">Join Event</a> |
             </td>
         </tr>
 }
