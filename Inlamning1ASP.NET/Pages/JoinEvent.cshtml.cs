@@ -30,13 +30,10 @@ namespace Inlamning1ASP.NET.Pages
             {
                 return NotFound();
             }
-            Attender = await _context.Attender
-                .Where(a => a.Id == 1)
-                .FirstOrDefaultAsync();
 
-            Event = await _context.Event.FirstOrDefaultAsync(m => m.Id == id);
-
-            
+            Event = await _context.Event
+                .Include(e => e.Organisation)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (Event == null)
             {
@@ -60,7 +57,7 @@ namespace Inlamning1ASP.NET.Pages
 
             await _context.SaveChangesAsync();
             
-            return RedirectToPage("/JoinEvent", new { id = id });
+            return RedirectToPage("/EfterJoining", new { id });
         }
     }
 }

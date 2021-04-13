@@ -26,14 +26,14 @@ namespace Inlamning1ASP.NET
             using (var scope = host.Services.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<EventsDbContext>();
-                
-                //context.Attender.RemoveRange(context.Attender);
-                //context.Event.RemoveRange(context.Event);
 
-                /*
+                context.Attender.RemoveRange(context.Attender);
+                context.Event.RemoveRange(context.Event);
+
+
                 context.Attender.AddRange(new List<Attender>()
                 {
-                   new Attender() { name = "Lolo", email = "antonberglund@hotmail.com", phone_number = "0731337123" },
+                   new Attender() { name = "Lolo", email = "Lolo@hotmail.com", phone_number = "0731337123" },
 
                 });
 
@@ -45,15 +45,15 @@ namespace Inlamning1ASP.NET
                 });
                 context.Event.AddRange(new List<Event>()
                 {
-                 new Event(){ title="Bollspel", date=DateTime.Now, adress="Norrköping", spots_available=400},
-                 new Event(){ title="Coronafest", date=DateTime.Now, adress="Kungsbacka", spots_available=400},
-                 new Event(){ title="Fotboll", date=DateTime.Now, adress="Göteborg", spots_available=400},
-                 new Event(){ title="Vintest", date=DateTime.Now, adress="Mölndal", spots_available=400},
+                 new Event(){ title="Bollspel", description="Lagspel och olika bollspel", date=DateTime.Now, place="Norrköping", spots_available=400},
+                 new Event(){ title="Coronafest",description="Festa för att corona är slut", date=DateTime.Now, place="Kungsbacka", spots_available=400},
+                 new Event(){ title="Fotboll",description="Träning i grupp", date=DateTime.Now, place="Göteborg", spots_available=400},
+                 new Event(){ title="Vintest",description="Testa på dyra och billiga vin", date=DateTime.Now, place="Mölndal", spots_available=400},
 
                 });
-                
+
                 context.SaveChanges();
-                */
+
             }
         }
 

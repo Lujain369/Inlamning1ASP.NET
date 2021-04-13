@@ -1,0 +1,38 @@
+﻿@page
+@model Inlamning1ASP.NET.Pages.MyEventsModel
+
+<h1 class=" float-left">My Events</h1>
+<h1 class="float-right mr-4">@Model.AttenderEvents[0].Attender.name</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AttenderEvents[0].Event.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AttenderEvents[0].Event.place)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AttenderEvents[0].Event.date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.AttenderEvents)
+        {
+        <tr>
+            <td>
+                <a>@item.Event.title</a>
+            </td>
+            <td>
+                <a>@item.Event.place</a>
+            </td>
+            <td>
+                @item.Event.date.ToLongDateString()
+            </td>
+           
+        </tr>
+        }
+    </tbody>
+</table>

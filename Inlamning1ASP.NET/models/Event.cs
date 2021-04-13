@@ -9,7 +9,7 @@ namespace Inlamning1ASP.NET.models
     {
         public int Id { get; set; }
         public string title { get; set; }
-        public int organisation_ID { get; set; }
+        public Organisation Organisation { get; set; }
         public string description { get; set; }
         public string place { get; set; }
         public string adress { get; set; }

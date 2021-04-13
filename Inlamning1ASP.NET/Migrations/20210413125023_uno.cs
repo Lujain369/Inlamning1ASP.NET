@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Inlamning1ASP.NET.Migrations
 {
-    public partial class initial : Migration
+    public partial class uno : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,13 +44,12 @@ namespace Inlamning1ASP.NET.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    organisation_ID = table.Column<int>(type: "int", nullable: false),
+                    OrganisationId = table.Column<int>(type: "int", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     place = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     adress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    spots_available = table.Column<int>(type: "int", nullable: false),
-                    OrganisationId = table.Column<int>(type: "int", nullable: true)
+                    spots_available = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

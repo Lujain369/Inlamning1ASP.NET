@@ -96,9 +96,6 @@ namespace Inlamning1ASP.NET.Migrations
                     b.Property<string>("description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("organisation_ID")
-                        .HasColumnType("int");
-
                     b.Property<string>("place")
                         .HasColumnType("nvarchar(max)");
 
@@ -172,9 +169,11 @@ namespace Inlamning1ASP.NET.Migrations
 
             modelBuilder.Entity("Inlamning1ASP.NET.models.Event", b =>
                 {
-                    b.HasOne("Inlamning1ASP.NET.models.Organisation", null)
+                    b.HasOne("Inlamning1ASP.NET.models.Organisation", "Organisation")
                         .WithMany("Events")
                         .HasForeignKey("OrganisationId");
+
+                    b.Navigation("Organisation");
                 });
 
             modelBuilder.Entity("Inlamning1ASP.NET.models.Organisation", b =>

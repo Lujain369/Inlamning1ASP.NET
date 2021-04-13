@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inlamning1ASP.NET.Migrations
 {
     [DbContext(typeof(EventsDbContext))]
-    [Migration("20210326182342_initial")]
-    partial class initial
+    [Migration("20210413125023_uno")]
+    partial class uno
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -98,9 +98,6 @@ namespace Inlamning1ASP.NET.Migrations
                     b.Property<string>("description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("organisation_ID")
-                        .HasColumnType("int");
-
                     b.Property<string>("place")
                         .HasColumnType("nvarchar(max)");
 
@@ -174,9 +171,11 @@ namespace Inlamning1ASP.NET.Migrations
 
             modelBuilder.Entity("Inlamning1ASP.NET.models.Event", b =>
                 {
-                    b.HasOne("Inlamning1ASP.NET.models.Organisation", null)
+                    b.HasOne("Inlamning1ASP.NET.models.Organisation", "Organisation")
                         .WithMany("Events")
                         .HasForeignKey("OrganisationId");
+
+                    b.Navigation("Organisation");
                 });
 
             modelBuilder.Entity("Inlamning1ASP.NET.models.Organisation", b =>
